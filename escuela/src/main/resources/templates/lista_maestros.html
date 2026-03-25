@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Lista de Maestros</title></head>
+<body>
+  <h2>Maestros Registrados</h2>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Especialidad</th>
+        <th>Nombre</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="m : ${lista_maestros}">
+        <td th:text="${m.especialidad}"></td>
+        <td th:text="${m.datosPersonales != null ? m.datosPersonales.nombre_persona + ' ' + m.datosPersonales.apellido_persona : 'Sin datos'}"></td>
+      </tr>
+      <tr th:if="${#lists.isEmpty(lista_maestros)}">
+        <td colspan="2">No hay datos registrados aún.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <form name="frmregresarinicio" id="frmregresarinicio" th:action="@{/}" method="post">
+    <input type="submit" value="Regresar al Inicio">
+  </form>
+</body>
+</html>

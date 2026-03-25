@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Lista de Carreras</title></head>
+<body>
+  <h2>Carreras Registradas y sus Escuelas</h2>
+
+  <table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Nombre de la Carrera</th>
+        <th>Escuela a la que pertenece</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="carrera : ${lista_carreras}">
+        <td th:text="${carrera.nombre_carrera}"></td>
+        <td th:text="${carrera.escuela != null ? carrera.escuela.nombre_escuela : 'Sin asignar'}"></td>
+      </tr>
+      <tr th:if="${#lists.isEmpty(lista_carreras)}">
+        <td colspan="2">No hay datos registrados aún.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <form name="frmregresarinicio" id="frmregresarinicio" th:action="@{/}" method="post">
+    <input type="submit" value="Regresar al Inicio">
+  </form>
+</body>
+</html>

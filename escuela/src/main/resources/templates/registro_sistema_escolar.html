@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8">
+<title>Registro Sistema Escolar</title></head>
+<body>
+  <h2>Registrar Sistema Escolar</h2>
+
+  <form th:action="@{/sistema_escolar/guardar_sistema_escolar}" method="post">
+    <table>
+      <tr>
+        <td>Alumno:</td>
+        <td>
+          <select name="id_alumno" required>
+            <option value="" disabled selected>-- Elige alumno --</option>
+            <option th:each="a : ${lista_alumnos}"
+                    th:value="${a.id_alumno}"
+                    th:text="${a.datosPersonales.nombre_persona + ' ' + a.datosPersonales.apellido_persona}">
+            </option>
+          </select>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Maestro:</td>
+        <td>
+          <select name="id_maestro" required>
+            <option value="" disabled selected>-- Elige maestro --</option>
+            <option th:each="m : ${lista_maestros}"
+                    th:value="${m.id_maestro}"
+                    th:text="${m.datosPersonales.nombre_persona + ' ' + m.datosPersonales.apellido_persona}">
+            </option>
+          </select>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Carrera:</td>
+        <td>
+          <select name="id_carrera" id="selectCarrera" required onchange="actualizarEscuela(this)">
+            <option value="" disabled selected>-- Elige carrera --</option>
+            <option th:each="c : ${lista_carreras}"
+                    th:value="${c.llaveCompuestaCarrera.id_carrera}"
+                    th:attr="data-escuela=${c.llaveCompuestaCarrera.id_escuela}"
+                    th:text="${c.nombre_carrera}">
+            </option>
+          </select>
+          <input type="hidden" name="id_escuela" id="hiddenEscuela"/>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Materia:</td>
+        <td>
+          <select name="id_materia" required>
+            <option value="" disabled selected>-- Elige materia --</option>
+            <option th:each="mat : ${lista_materias}"
+                    th:value="${mat.id_materia}"
+                    th:text="${mat.nombre_materia}">
+            </option>
+          </select>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Calificación:</td>
+        <td><input type="number" step="0.1" min="0" max="10" name="calificacion" required></td>
+      </tr>
+
+      <tr>
+        <td colspan="2"><input type="submit" value="Guardar"></td>
+      </tr>
+    </table>
+  </form>
+
+  <form name="frmregresarinicio" id="frmregresarinicio" th:action="@{/}" method="post">
+    <input type="submit" value="Regresar al Inicio">
+  </form>
+
+  <script>
+    function actualizarEscuela(select) {
+      const opcion = select.options[select.selectedIndex];
+      document.getElementById('hiddenEscuela').value = opcion.getAttribute('data-escuela') || '';
+    }
+  </script>
+</body>
+</html>

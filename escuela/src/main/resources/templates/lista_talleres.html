@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Talleres</title>
+</head>
+<body>
+    <h2>Talleres Registrados</h2>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>División</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="t : ${lista_talleres}">
+                <td th:text="${t.nombre_taller}"></td>
+                <td th:text="${t.division != null ? t.division.nombre_division : 'Sin división'}"></td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(lista_talleres)}">
+                <td colspan="2">No hay talleres registrados aún.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form name="frmregresarinicio" id="frmregresarinicio" th:action="@{/}" method="post">
+        <input type="submit" value="Regresar al Inicio">
+    </form>
+</body>
+</html>

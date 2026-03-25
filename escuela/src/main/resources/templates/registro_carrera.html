@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Carreras</title>
+</head> 
+<body>  
+    <h2>Registrar Nueva Carrera</h2>
+    
+    <form th:action="@{/carrera/guardar_carrera}" method="post">
+        <table>
+            <tbody>
+                <tr>
+                    <td>Seleccionar Escuela:</td>
+                    <td>
+                        <select name="id_escuela" required>
+                            <option value="" disabled selected>-- Elige una escuela --</option>
+                            <option th:each="escuela : ${lista_escuelas}" 
+                                    th:value="${escuela.id_escuela}" 
+                                    th:text="${escuela.nombre_escuela}"></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                      <td>Nombre de la Carrera:</td>
+                    <td>
+                        <input type="text" name="nombre_carrera" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="Guardar">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+         <form name="frmregresarinicio" id="frmregresarinicio" th:action="@{/}" method="post">
+            <input type="submit" value="Regresar al Inicio">
+        </form>
+</body>
+</html>

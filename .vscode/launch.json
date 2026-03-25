@@ -1,0 +1,34 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "MercadoApplication",
+            "request": "launch",
+            "mainClass": "com.rene.mercado.MercadoApplication"
+        },
+        {
+            "type": "java",
+            "name": "MiguelApplication",
+            "request": "launch",
+            "mainClass": "miguel.MiguelApplication",
+            "projectName": "miguel"
+        },
+        {
+            "type": "java",
+            "name": "EscuelaApplication",
+            "request": "launch",
+            "mainClass": "mx.com.ieem.carlos.escuela.EscuelaApplication",
+            "projectName": "mx.com.ieem.carlos.escuela-escuela"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-EscuelaApplication<escuela>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "mx.com.ieem.carlos.escuela.EscuelaApplication",
+            "projectName": "escuela",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

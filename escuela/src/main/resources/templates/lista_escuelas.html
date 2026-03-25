@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Escuelas</title>
+</head> 
+<body>  
+    <h2>Escuelas Registradas y sus Carreras</h2>
+    
+    <table border="1" cellpadding="5" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Nombre de la Escuela</th>
+                <th>Carreras que Ofrece</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="escuela : ${lista_escuelas}">
+                <td th:text="${escuela.nombre_escuela}"></td>
+                <td>
+                    <ul th:if="${escuela.carreras != null and !escuela.carreras.isEmpty()}">
+                        <li th:each="carrera : ${escuela.carreras}" th:text="${carrera.nombre_carrera}"></li>
+                    </ul>
+                    <span th:if="${escuela.carreras == null or escuela.carreras.isEmpty()}">No hay carreras registradas</span>
+                </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(lista_escuelas)}">
+                <td colspan="2">No hay datos registrados aún.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <form name="frmregresarinicio" id="frmregresarinicio" th:action="@{/}" method="post">
+        <input type="submit" value="Regresar al Inicio">
+    </form>
+</body>
+</html>

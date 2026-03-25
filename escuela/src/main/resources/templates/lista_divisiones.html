@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Divisiones</title>
+</head>
+<body>
+    <h2>Divisiones Registradas</h2>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="division : ${lista_divisiones}">
+                <td th:text="${division.nombre_division}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form th:action="@{/}" method="post">
+        <input type="submit" value="Regresar al Inicio">
+    </form>
+</body>
+</html>

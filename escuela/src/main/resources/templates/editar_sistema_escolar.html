@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Editar Sistema Escolar</title></head>
+<body>
+  <h2>Editar Sistema Escolar</h2>
+
+  <form th:action="@{/sistema_escolar/actualizar_sistema_escolar}" method="post">
+
+    <!-- ✅ CORREGIDO: la entidad tiene id_sistema_escolar directamente, no llaveCompuesta -->
+    <input type="hidden" name="id_sistema_escolar"
+           th:value="${sistema_escolar.id_sistema_escolar}">
+
+    <table>
+      <tr>
+        <td>Alumno:</td>
+        <td th:text="${sistema_escolar.alumno != null && sistema_escolar.alumno.datosPersonales != null
+            ? sistema_escolar.alumno.datosPersonales.nombre_persona + ' ' + sistema_escolar.alumno.datosPersonales.apellido_persona
+            : 'Sin alumno'}">
+        </td>
+      </tr>
+
+      <tr>
+        <td>Maestro:</td>
+        <td th:text="${sistema_escolar.maestro != null && sistema_escolar.maestro.datosPersonales != null
+            ? sistema_escolar.maestro.datosPersonales.nombre_persona + ' ' + sistema_escolar.maestro.datosPersonales.apellido_persona
+            : 'Sin maestro'}">
+        </td>
+      </tr>
+
+      <tr>
+        <td>Carrera:</td>
+        <td>
+          <select name="id_carrera" id="selectCarrera" required onchange="actualizarEscuela(this)">
+            <option value="" disabled>-- Elige carrera --</option>
+            <option th:each="c : ${lista_carreras}"
+                    th:value="${c.llaveCompuestaCarrera.id_carrera}"
+                    th:attr="data-escuela=${c.llaveCompuestaCarrera.id_escuela}"
+                    th:text="${c.nombre_carrera}"
+                    th:selected="${sistema_escolar.carrera != null and
+                                  c.llaveCompuestaCarrera.id_carrera == sistema_escolar.carrera.llaveCompuestaCarrera.id_carrera}">
+            </option>
+          </select>
+          <input type="hidden" name="id_escuela" id="hiddenEscuela"
+                 th:value="${sistema_escolar.carrera != null ?
+                             sistema_escolar.carrera.llaveCompuestaCarrera.id_escuela : ''}"/>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Materia:</td>
+        <td>
+          <select name="id_materia" required>
+            <option value="" disabled>-- Elige materia --</option>
+            <option th:each="mat : ${lista_materias}"
+                    th:value="${mat.id_materia}"
+                    th:text="${mat.nombre_materia}"
+                    th:selected="${sistema_escolar.materia != null and
+                                  mat.id_materia == sistema_escolar.materia.id_materia}">
+            </option>
+          </select>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Calificación:</td>
+        <td>
+          <input type="number" step="0.1" min="0" max="10" name="calificacion"
+                 th:value="${sistema_escolar.calificacion}" required>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2"><input type="submit" value="Guardar Cambios"></td>
+      </tr>
+    </table>
+  </form>
+
+  <form th:action="@{/sistema_escolar/lista_sistemas_escolares}" method="post">
+    <input type="submit" value="Cancelar">
+  </form>
+
+  <script>
+    function actualizarEscuela(select) {
+      const opcion = select.options[select.selectedIndex];
+      document.getElementById('hiddenEscuela').value = opcion.getAttribute('data-escuela') || '';
+    }
+  </script>
+</body>
+</html>

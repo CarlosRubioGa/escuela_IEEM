@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Lista Curso-Maestro</title></head>
+<body>
+  <h2>Lista de Cursos con sus Maestros</h2>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Curso</th>
+        <th>Maestros</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="c : ${lista_cursos}">
+        <td>
+          <span th:text="${c.nombre_curso}"></span><br>
+          <small th:text="${'(' + c.division.nombre_division + ')'}"></small>
+        </td>
+        <td>
+          <ul>
+            <li th:each="m : ${c.maestros}">
+              <span th:text="${m.datosPersonales.nombre_persona + ' ' + m.datosPersonales.apellido_persona}"></span>
+
+              <form th:action="@{/curso/editar_curso_maestro}" method="post" style="display:inline;">
+                <input type="hidden" name="idsCurso" th:value="${c.id_curso}">
+                <input type="hidden" name="idMaestro" th:value="${m.id_maestro}">
+                <input type="submit" value="Editar">
+              </form>
+
+              <form th:action="@{/curso/eliminar_curso_maestro}" method="post" style="display:inline;"
+                    onsubmit="return confirm('Quitar este maestro del curso?');">
+                <input type="hidden" name="idsCurso" th:value="${c.id_curso}">
+                <input type="hidden" name="idMaestro" th:value="${m.id_maestro}">
+                <input type="submit" value="Eliminar">
+              </form>
+            </li>
+            <li th:if="${#lists.isEmpty(c.maestros)}">Sin maestros</li>
+          </ul>
+        </td>
+      </tr>
+      <tr th:if="${#lists.isEmpty(lista_cursos)}">
+        <td colspan="2">No hay cursos registrados.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <form th:action="@{/}" method="post">
+    <input type="submit" value="Regresar al Inicio">
+  </form>
+</body>
+</html>

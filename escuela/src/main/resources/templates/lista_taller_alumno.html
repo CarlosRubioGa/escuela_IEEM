@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Lista Taller-Alumno</title></head>
+<body>
+  <h2>Lista de Talleres con sus Alumnos</h2>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Taller</th>
+        <th>Alumnos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="t : ${lista_talleres}">
+        <td>
+          <span th:text="${t.nombre_taller}"></span><br>
+          <small th:text="${'(' + t.division.nombre_division + ')'}"></small>
+        </td>
+        <td>
+          <ul>
+            <li th:each="ta : ${t.tallerAlumno}">
+              <span th:text="${ta.alumno.datosPersonales.nombre_persona + ' ' + ta.alumno.datosPersonales.apellido_persona}"></span>
+
+              <form th:action="@{/taller/eliminar_taller_alumno}" method="post" style="display:inline;"
+                    onsubmit="return confirm('Quitar este alumno del taller?');">
+                <input type="hidden" name="id_taller" th:value="${t.id_taller}">
+                <input type="hidden" name="id_alumno" th:value="${ta.alumno.id_alumno}">
+                <input type="submit" value="Eliminar">
+              </form>
+            </li>
+            <li th:if="${#lists.isEmpty(t.tallerAlumno)}">Sin alumnos</li>
+          </ul>
+        </td>
+      </tr>
+      <tr th:if="${#lists.isEmpty(lista_talleres)}">
+        <td colspan="2">No hay talleres registrados.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <form th:action="@{/}" method="post">
+    <input type="submit" value="Regresar al Inicio">
+  </form>
+</body>
+</html>

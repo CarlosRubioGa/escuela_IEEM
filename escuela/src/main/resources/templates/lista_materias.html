@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Lista de Materias</title></head>
+<body>
+  <h2>Materias Registradas</h2>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Créditos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="mat : ${lista_materias}">
+        <td th:text="${mat.nombre_materia}"></td>
+        <td th:text="${mat.creditos_materia}"></td>
+      </tr>
+      <tr th:if="${#lists.isEmpty(lista_materias)}">
+        <td colspan="2">No hay datos registrados aún.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <form name="frmregresarinicio" id="frmregresarinicio" th:action="@{/}" method="post">
+    <input type="submit" value="Regresar al Inicio">
+  </form>
+</body>
+</html>

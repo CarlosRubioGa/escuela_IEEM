@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Maestros</title>
+</head>
+<body>
+    <h2>Registrar Nuevo Maestro</h2>
+
+    <form th:action="@{/maestro/guardar_maestro}" method="post">
+        <table>
+            <tbody>
+                <tr>
+                    <td>Seleccionar Datos Personales:</td>
+                    <td>
+                        <select name="id_datos_personales" required>
+                            <option value="" disabled selected>-- Elige datos personales --</option>
+                            <option th:each="datosPersonales : ${lista_datos_personales}"
+                                    th:value="${datosPersonales.id_datos_personales}"
+                                    th:text="${datosPersonales.nombre_persona + ' ' + datosPersonales.apellido_persona}">
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Especialidad:</td>
+                    <td><input type="text" name="especialidad" required></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2"><input type="submit" value="Guardar"></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+
+    <form name="frmregresarinicio" id="frmregresarinicio" th:action="@{/}" method="post">
+        <input type="submit" value="Regresar al Inicio">
+    </form>
+</body>
+</html>

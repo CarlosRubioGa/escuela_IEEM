@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión Curso-Maestro</title>
+    <style>
+        .lista-checkboxes {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 8px;
+        }
+        .lista-checkboxes label {
+            display: block;
+            margin-bottom: 4px;
+            cursor: pointer;
+        }
+        .lista-checkboxes input[type="checkbox"] {
+            margin-right: 6px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Gestión de Curso-Maestro</h2>
+
+    <h3>Asignar Cursos a Maestro</h3>
+    <form th:action="@{/curso/asignar_curso_maestro}" method="post">
+        <table>
+            <tr>
+                <td>Maestro:</td>
+                <td>
+                    <select name="idMaestro" required>
+                        <option value="" disabled selected>-- Elige maestro --</option>
+                        <option th:each="m : ${lista_maestros}"
+                                th:value="${m.id_maestro}"
+                                th:text="${m.datosPersonales.nombre_persona + ' ' + m.datosPersonales.apellido_persona}">
+                        </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Cursos:</td>
+                <td>
+                    <!-- Checkboxes para seleccion multiple de cursos -->
+                    <div class="lista-checkboxes">
+                        <div th:each="c : ${lista_cursos}">
+                            <label>
+                                <input type="checkbox"
+                                       name="idsCurso"
+                                       th:value="${c.id_curso}">
+                                <span th:text="${c.nombre_curso + ' - ' + c.division.nombre_division}"></span>
+                            </label>
+                        </div>
+                        <!-- Mensaje cuando no hay cursos registrados -->
+                        <span th:if="${#lists.isEmpty(lista_cursos)}">No hay cursos registrados.</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Asignar">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <form th:action="@{/}" method="post">
+        <input name="frmregresarinicio" id="frmregresarinicio" type="submit" value="Regresar al Inicio">
+    </form>
+</body>
+</html>

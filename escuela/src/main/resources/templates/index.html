@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio</title>
+    <style>
+        table { width: 100%; border-spacing: 20px; }
+        td { vertical-align: top; width: 50%; }
+        input { width: 100%; margin-bottom: 5px; padding: 8px; cursor: pointer; }
+        h3 { text-align: center; border-bottom: 1px solid #ccc; }
+        .fila { display: flex; gap: 20px; margin-bottom: 5px; }
+        .fila form { flex: 1; margin: 0; }
+        .fila input { margin: 0; }
+        .vacio { width: 100%; padding: 8px; visibility: hidden; }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th><h3>REGISTROS</h3></th>
+            <th><h3>LISTAS</h3></th>
+        </tr>
+
+        <tr>
+            <td>
+                <form name="frmregistrarescuela" id="frmregistrarescuela" method="post" th:action="@{/escuela/registro_escuela}">
+                    <input type="submit" value="Agregar Nueva Escuela">
+                </form>
+            </td>
+            <td>
+                <form name="frmlistaescuela" id="frmlistaescuela" method="post" th:action="@{/escuela/lista_escuela}">
+                    <input type="submit" value="Ver Lista de Escuelas">
+                </form>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td>
+                <form name="frmregistrarcarrera" id="frmregistrarcarrera" method="post" th:action="@{/carrera/registro_carrera}">
+                    <input type="submit" value="Agregar Nueva Carrera">
+                </form>
+            </td>
+            <td>
+                <form name="frmlistacarrera" id="frmlistacarrera" method="post" th:action="@{/carrera/lista_carreras}">
+                    <input type="submit" value="Ver Lista de Carreras">
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <form name="frmregistrarmateria" id="frmregistrarmateria" method="post" th:action="@{/materia/registro_materia}">
+                    <input type="submit" value="Agregar Nueva Materia">
+                </form>
+            </td>
+            <td>
+                <form name="frmlistamateria" id="frmlistamateria" method="post" th:action="@{/materia/lista_materias}">
+                    <input type="submit" value="Ver Lista de Materias">
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <form name="frmregistrardivision" id="frmregistrardivision" method="post" th:action="@{/division/registro_division}">
+                    <input type="submit" value="Agregar Nueva División">
+                </form>
+            </td>
+            <td>
+                <form name="frmlistadivision" id="frmlistadivision" method="post" th:action="@{/division/lista_divisiones}">
+                    <input type="submit" value="Ver Lista de Divisiones">
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <form name="frmregistrartaller" id="frmregistrartaller" method="post" th:action="@{/taller/registro_taller}">
+                    <input type="submit" value="Agregar Nuevo Taller">
+                </form>
+            </td>
+            <td>
+                <form name="frmlistataller" id="frmlistataller" method="post" th:action="@{/taller/lista_talleres}">
+                    <input type="submit" value="Ver Lista de Talleres">
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <form name="frmregistrarcurso" id="frmregistrarcurso" method="post" th:action="@{/curso/registro_curso}">
+                    <input type="submit" value="Agregar Nuevo Curso">
+                </form>
+            </td>
+            <td>
+                <form name="frmlistacurso" id="frmlistacurso" method="post" th:action="@{/curso/lista_cursos}">
+                    <input type="submit" value="Ver Lista de Cursos">
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <form name="frmregistrardatos" id="frmregistrardatos" method="post" th:action="@{/datos_personales/registro_datos_personales}">
+                    <input type="submit" value="Agregar Datos Personales">
+                </form>
+            </td>
+            <td>
+                <form name="frmlistadatos" id="frmlistadatos" method="post" th:action="@{/datos_personales/lista_datos_personales}">
+                    <input type="submit" value="Ver Lista de Datos Personales">
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <form name="frmregistraralumno" id="frmregistraralumno" method="post" th:action="@{/alumno/registro_alumno}">
+                    <input type="submit" value="Agregar Alumnos">
+                </form>
+            </td>
+            <td>
+                <form name="frmlistaalumno" id="frmlistaalumno" method="post" th:action="@{/alumno/lista_alumnos}">
+                    <input type="submit" value="Ver Lista de Alumnos">
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <form name="frmregistrartalleralumno" id="frmregistrartalleralumno" method="post" th:action="@{/taller/vista_taller_alumno}">
+                    <input type="submit" value="Registro Taller-Alumno">
+                </form>
+            </td>
+            <td>
+                <form name="frmlistatalleralumno" id="frmlistatalleralumno" method="post" th:action="@{/taller/lista_taller_alumno}">
+                    <input type="submit" value="Ver Lista de Taller-Alumno">
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="button" value="" class="vacio" disabled>
+            </td>
+            <td>
+                <form name="frmlistaalumnotaller" id="frmlistaalumnotaller" method="post" th:action="@{/taller/lista_alumno_taller}">
+                    <input type="submit" value="Ver Lista de Alumno-Taller">
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <form name="frmregistrarmaestro" id="frmregistrarmaestro" method="post" th:action="@{/maestro/registro_maestro}">
+                    <input type="submit" value="Agregar Profesores">
+                </form>
+            </td>
+            <td>
+                <form name="frmlistamaestro" id="frmlistamaestro" method="post" th:action="@{/maestro/lista_maestros}">
+                    <input type="submit" value="Ver Lista de Profesores">
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <form name="frmregistrarcursomaestro" id="frmregistrarcursomaestro" method="post" th:action="@{/curso/vista_curso_maestro}">
+                    <input type="submit" value="Registro Curso-Maestro">
+                </form>
+            </td>
+            <td>
+                <form name="frmlistacursomaestro" id="frmlistacursomaestro" method="post" th:action="@{/curso/lista_curso_maestro}">
+                    <input type="submit" value="Ver Lista de Curso-Maestro">
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="button" value="" class="vacio" disabled>
+            </td>
+            <td>
+                <form name="frmlistamaestrocurso" id="frmlistamaestrocurso" method="post" th:action="@{/curso/lista_maestro_curso}">
+                    <input type="submit" value="Ver Lista de Maestros-Curso">
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <form name="frmregistrarsistemaescolar" id="frmregistrarsistemaescolar" method="post" th:action="@{/sistema_escolar/registro_sistema_escolar}">
+                    <input type="submit" value="Agregar Sistema Escolar">
+                </form>
+            </td>
+            <td>
+                <form name="frmlistasistemaescolar" id="frmlistasistemaescolar" method="post" th:action="@{/sistema_escolar/lista_sistemas_escolares}">
+                    <input type="submit" value="Ver Lista de Sistemas Escolares">
+                </form>
+            </td>
+        </tr>
+
+    </table>
+</body>
+</html>

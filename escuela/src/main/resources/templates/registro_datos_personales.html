@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Datos Personales</title>
+</head> 
+    <body>  
+        <h2>Registrar Datos Personales</h2>
+        
+        <form th:action="@{/datos_personales/guardar_datos_personales}" method="post">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>CURP:</td>
+                        <td>
+                            <input type="text" name="txtcurp" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Nombre:</td>
+                        <td>
+                            <input type="text" name="txtnombre_persona" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Apellido:</td>
+                        <td>
+                            <input type="text" name="txtapellido_persona" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Edad:</td>
+                        <td>
+                            <input type="number" name="txtedad" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Grupo Sanguíneo:</td>
+                        <td>
+                            <select name="txtgruposanguineo" required>
+                                <option value="" disabled selected>Selecciona una opción</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" value="Guardar">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+        <form name="frmregresarinicio" id="frmregresarinicio" th:action="@{/}" method="post">
+            <input type="submit" value="Regresar al Inicio">
+        </form>
+    </body>
+</html>

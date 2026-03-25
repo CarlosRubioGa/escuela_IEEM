@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Editar Maestro-Curso</title></head>
+<body>
+  <h2>Editar asignación Maestro-Curso</h2>
+
+  <form th:action="@{/curso/actualizar_maestro_curso}" method="post">
+    <input type="hidden" name="idMaestro"    th:value="${maestro.id_maestro}">
+    <input type="hidden" name="idCursoViejo" th:value="${curso_actual.id_curso}">
+
+    <table>
+      <tr>
+        <td>Maestro:</td>
+        <td th:text="${maestro.datosPersonales.nombre_persona
+                      + ' ' + maestro.datosPersonales.apellido_persona}"></td>
+      </tr>
+      <tr>
+        <td>Curso actual:</td>
+        <td th:text="${curso_actual.nombre_curso + ' - ' + curso_actual.division.nombre_division}"></td>
+      </tr>
+      <tr>
+        <td>Nuevo curso:</td>
+        <td>
+          <select name="idCursoNuevo" required>
+            <option value="" disabled selected>-- Elige nuevo curso --</option>
+            <option th:each="c : ${lista_cursos}"
+                    th:value="${c.id_curso}"
+                    th:text="${c.nombre_curso + ' - ' + c.division.nombre_division}"
+                    th:selected="${c.id_curso == curso_actual.id_curso}">
+            </option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2"><input type="submit" value="Guardar Cambios"></td>
+      </tr>
+    </table>
+  </form>
+
+  <form th:action="@{/curso/lista_maestro_curso}" method="post">
+    <input type="submit" value="Cancelar">
+  </form>
+</body>
+</html>

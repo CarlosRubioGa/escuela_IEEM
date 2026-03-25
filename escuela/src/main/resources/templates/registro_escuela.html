@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Escuela</title>
+</head> 
+    <body>  
+        <h2>Registrar Escuela</h2>
+        
+        <form th:action="@{/escuela/guardar_escuela}" method="post">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>Nombre de la escuela:</td>
+                        <td>
+                            <input type="text" name="txtnombre_escuela" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Dirección:</td>
+                        <td>
+                            <input type="text" name="txtdireccion_escuela" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" value="Guardar">
+                        </td>
+                    </tr>
+                    <tr>
+                </tbody>
+            </table>
+        </form>
+        <form name="frmregresarinicio" id="frmregresarinicio" th:action="@{/}" method="post">
+            <input type="submit" value="Regresar al Inicio">
+        </form>
+    </body>
+</html>

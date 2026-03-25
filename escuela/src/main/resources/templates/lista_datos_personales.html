@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Lista de Datos Personales</title></head>
+<body>
+  <h2>Datos Personales Registrados</h2>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>CURP</th>
+        <th>Nombre</th>
+        <th>Edad</th>
+        <th>Grupo Sanguíneo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="d : ${lista_datos_personales}">
+        <td th:text="${d.curp}"></td>
+        <td th:text="${d.nombre_persona + ' ' + d.apellido_persona}"></td>
+        <td th:text="${d.edad}"></td>
+        <td th:text="${d.grupo_sanguineo}"></td>
+      </tr>
+      <tr th:if="${#lists.isEmpty(lista_datos_personales)}">
+        <td colspan="4">No hay datos registrados aún.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <form name="frmregresarinicio" id="frmregresarinicio" th:action="@{/}" method="post">
+    <input type="submit" value="Regresar al Inicio">
+  </form>
+</body>
+</html>

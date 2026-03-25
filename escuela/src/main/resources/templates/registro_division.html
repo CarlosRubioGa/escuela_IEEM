@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de División</title>
+</head> 
+    <body>  
+        <h2>Registrar División</h2>
+        
+        <form th:action="@{/division/guardar_division}" method="post">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>Nombre de la división:</td>
+                        <td>
+                            <input type="text" name="NombreDivision" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" value="Guardar">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+        <form name="frmregresarinicio" id="frmregresarinicio" th:action="@{/}" method="post">
+            <input type="submit" value="Regresar al Inicio">
+        </form>
+    </body>
+</html>

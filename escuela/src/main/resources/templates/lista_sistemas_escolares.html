@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Lista Sistema Escolar</title></head>
+<body>
+  <h2>Registros de Sistemas Escolares</h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Alumno</th>
+        <th>Maestro</th>
+        <th>Carrera</th>
+        <th>Materia</th>
+        <th>Calificación</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="se : ${lista_sistemas_escolares}">
+        <td th:text="${se.alumno != null && se.alumno.datosPersonales != null
+            ? se.alumno.datosPersonales.nombre_persona + ' ' + se.alumno.datosPersonales.apellido_persona
+            : 'Sin alumno'}"></td>
+        <td th:text="${se.maestro != null && se.maestro.datosPersonales != null
+            ? se.maestro.datosPersonales.nombre_persona + ' ' + se.maestro.datosPersonales.apellido_persona
+            : 'Sin maestro'}"></td>
+        <td th:text="${se.carrera != null ? se.carrera.nombre_carrera : 'Sin carrera'}"></td>
+        <td th:text="${se.materia != null ? se.materia.nombre_materia : 'Sin materia'}"></td>
+        <td th:text="${se.calificacion}"></td>
+        <td>
+          <form th:action="@{/sistema_escolar/editar_sistema_escolar}" method="post" style="display:inline;">
+            <input type="hidden" name="id_sistema_escolar" th:value="${se.id_sistema_escolar}">
+            <input type="submit" value="Editar">
+          </form>
+          <form th:action="@{/sistema_escolar/eliminar_sistema_escolar}" method="post" style="display:inline;"
+                onsubmit="return confirm('¿Seguro que deseas eliminar este registro?');">
+            <input type="hidden" name="id_sistema_escolar" th:value="${se.id_sistema_escolar}">
+            <input type="submit" value="Eliminar">
+          </form>
+        </td>
+      </tr>
+      <tr th:if="${#lists.isEmpty(lista_sistemas_escolares)}">
+        <td colspan="6">No hay datos registrados aún.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <form name="frmregresarinicio" id="frmregresarinicio" th:action="@{/}" method="post">
+    <input type="submit" value="Regresar al Inicio">
+  </form>
+</body>
+</html>

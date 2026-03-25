@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión Taller-Alumno</title>
+    <style>
+        .lista-checkboxes {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 8px;
+        }
+        .lista-checkboxes label {
+            display: block;
+            margin-bottom: 4px;
+            cursor: pointer;
+        }
+        .lista-checkboxes input[type="checkbox"] {
+            margin-right: 6px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Gestión de Talleres y Alumnos</h2>
+
+    <h3>Asignar Talleres a Alumno</h3>
+    <form th:action="@{/taller/asignar_taller}" method="post">
+        <table>
+            <tr>
+                <td>Alumno:</td>
+                <td>
+                    <select name="id_alumno" required>
+                        <option value="" disabled selected>-- Elige alumno --</option>
+                        <option th:each="a : ${lista_alumnos}"
+                                th:value="${a.id_alumno}"
+                                th:text="${a.datosPersonales.nombre_persona + ' ' + a.datosPersonales.apellido_persona}">
+                        </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Talleres:</td>
+                <td>
+                    <div class="lista-checkboxes">
+                        <div th:each="t : ${lista_talleres}">
+                            <label>
+                                <input type="checkbox"
+                                       name="ids_taller"
+                                       th:value="${t.id_taller}">
+                                <span th:text="${t.nombre_taller + ' - ' + t.division.nombre_division}"></span>
+                            </label>
+                        </div>
+                        <span th:if="${#lists.isEmpty(lista_talleres)}">No hay talleres registrados.</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Asignar">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <form th:action="@{/}" method="post">
+        <input name="frmregresarinicio" id="frmregresarinicio" type="submit" value="Regresar al Inicio">
+    </form>
+</body>
+</html>
