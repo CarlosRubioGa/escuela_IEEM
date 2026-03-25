@@ -60,7 +60,7 @@ public class ControladorDivision {
         // Vista de la lista de divisiones;
         ModelAndView modelAndView = new ModelAndView("lista_divisiones");
         
-        // Se agrega la lista de divisiones a la vista para mostrarla en la tabla
+        // Se agrega la lista de divisiones a la vista para mostrarla en la tabla.
         modelAndView.addObject("lista_divisiones", lista); 
 
         return modelAndView;
